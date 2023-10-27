@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel = "users")
 public interface UserController extends MongoRepository<User, UUID>{
+    User findByUsername(String username);
 }
