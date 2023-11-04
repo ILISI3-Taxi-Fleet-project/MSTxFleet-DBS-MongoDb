@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class UUIDListener extends AbstractMongoEventListener<User> {
+public class UUIDUserListener extends AbstractMongoEventListener<User> {
 
     @Override
     public void onBeforeConvert(BeforeConvertEvent<User> event) {
