@@ -1,7 +1,3 @@
 spring:
-  application:
-    name: MSTxFleet-DBS-MongoDb
-  cloud:
-    discovery:
-      enabled: true
-
+  profiles:
+    active: prod
