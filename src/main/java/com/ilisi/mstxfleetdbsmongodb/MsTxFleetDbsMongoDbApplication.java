@@ -60,7 +60,7 @@ public class MsTxFleetDbsMongoDbApplication {
 			userController.save(
 					new User(
 							UUID.randomUUID(),
-							"walid",
+							"walidwalid",
 							"walidwalid",
 							"DRIVER",
 							"Walid",
