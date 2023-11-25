@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: MSTxFleet-DBS-MongoDb
+  cloud:
+    discovery:
+      enabled: true
+  data:
+    mongodb:
+      host: mongoserver-prod
+      port: 27017
+      database: TaxiFleet
+      username: root
+      password: secret
+      authentication-database: admin
+  docker:
+    compose:
+      enabled: false
+
+
+
+
+
