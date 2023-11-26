@@ -1,10 +1,10 @@
 server:
-  port: 0
+  port: 8081
 
 spring:
   application:
     name: MSTxFleet-DBS-MongoDb
   cloud:
     discovery:
-      enabled: true
+      enabled: false
 

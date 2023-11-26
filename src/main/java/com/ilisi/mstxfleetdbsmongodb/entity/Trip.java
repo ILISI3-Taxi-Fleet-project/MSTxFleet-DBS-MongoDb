@@ -8,6 +8,7 @@ import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,7 +17,9 @@ import java.util.UUID;
 
 @Document(collection = "trips")
 @Data
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Trip {
     @Id
     private UUID id;
@@ -29,10 +32,10 @@ public class Trip {
     private Location destination;
 
     @PastOrPresent(message = "Created date must be in the past or present")
-    private Date created_at;
+    private Date created_at = new Date();
 
-    @Nullable
-    private User client;
+    @NotNull(message = "Passenger is required")
+    private User passenger;
 
     @Nullable
     private User driver;
