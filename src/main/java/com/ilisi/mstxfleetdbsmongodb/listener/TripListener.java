@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -19,22 +18,22 @@ public class TripListener extends AbstractMongoEventListener<Trip> {
     @Override
     public void onBeforeConvert(BeforeConvertEvent<Trip> event) {
         Trip entity = event.getSource();
-        System.out.println("TripListener.onBeforeConvert");
-        if (entity.getId() == null) {
-            // set the id
-            entity.setId(UUID.randomUUID());
+        //System.out.println("TripListener.onBeforeConvert");
+        if(entity.getDriver() == null) {
             // set the passenger (search by id)
+            System.out.println("Initializing trip");
             Optional<User> passeneger = Optional.ofNullable(
                     userRepository.findById(entity.getPassenger().getId())
-                    .orElseThrow(() -> new RuntimeException("Cannot find passenger with id: " + entity.getPassenger().getId())));
+                            .orElseThrow(() -> new RuntimeException("Cannot find passenger with id: " + entity.getPassenger().getId())));
             entity.setPassenger(passeneger.get());
-
-        }else if(entity.getDriver() != null) {
+        }else{
+            System.out.println("Accepting trip");
             Optional<User> driver = Optional.ofNullable(
                     userRepository.findById(entity.getDriver().getId())
                             .orElseThrow(() -> new RuntimeException("Cannot find driver with id: " + entity.getDriver().getId())));
             entity.setDriver(driver.get());
         }
+
     }
 
 

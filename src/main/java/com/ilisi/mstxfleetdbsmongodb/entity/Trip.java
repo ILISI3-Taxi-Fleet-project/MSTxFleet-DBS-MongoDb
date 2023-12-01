@@ -9,7 +9,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.UUID;
 
 @Document(collection = "trips")
@@ -29,8 +29,15 @@ public class Trip {
     @Valid
     private Location destination;
 
+    @NotNull(message = "Start location is required")
+    @Valid
+    private Location startLocation;
+
     @PastOrPresent(message = "Created date must be in the past or present")
-    private Date created_at = new Date();
+    private Instant created_at;
+
+    @PastOrPresent(message = "Updated date must be in the past or present")
+    private Instant updated_at;
 
     @NotNull(message = "Passenger is required")
     private User passenger;
