@@ -24,13 +24,13 @@ public class TripService {
                         Double startLatitude,
                         Double startLongitude,
                         String status,
-                        String created_at
+                        Instant createdAt
                         ) {
 
 
         Trip trip = Trip.builder().
                 id(UUID.fromString(tripId))
-                .created_at(Instant.now())
+                .created_at(createdAt)
                 .passenger(User.builder().id(UUID.fromString(passengerId)).build())
                 .destination(new Location(endLatitude, endLongitude))
                 .startLocation(new Location(startLatitude, startLongitude))
@@ -43,11 +43,14 @@ public class TripService {
     public void acceptTrip(String tripId,
                            String driverId,
                            String status,
-                           String updated_at) {
-        Trip trip = tripRepository.findById(UUID.fromString(tripId)).get();
+                           Instant updatedAt) {
+        Trip trip = tripRepository.findById(UUID.fromString(tripId)).orElseThrow(
+                () -> new RuntimeException("Trip not found")
+        );
+
         trip.setDriver(User.builder().id(UUID.fromString(driverId)).build());
         trip.setStatus(status);
-        trip.setUpdated_at(Instant.now());
+        trip.setUpdated_at(updatedAt);
         tripRepository.save(trip);
     }
 

@@ -1,4 +1,4 @@
-package com.ilisi.mstxfleetdbsmongodb.kafkalistiner;
+package com.ilisi.mstxfleetdbsmongodb.kafkalistener;
 
 
 
@@ -10,6 +10,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Map;
 
 
@@ -35,7 +36,7 @@ public class KafkaConsumer {
                         Double.parseDouble(message.get("startLatitude").toString()),
                         Double.parseDouble(message.get("startLongitude").toString()),
                         message.get("status").toString(),
-                        message.get("created_at").toString());
+                        Instant.parse(message.get("created_at").toString()));
 
 
             } else {
@@ -43,7 +44,7 @@ public class KafkaConsumer {
                         message.get("tripId").toString(),
                         message.get("driverId").toString(),
                         message.get("status").toString(),
-                        message.get("updated_at").toString());
+                        Instant.parse(message.get("updated_at").toString()));
             }
         } catch (Exception e) {
             e.printStackTrace();
