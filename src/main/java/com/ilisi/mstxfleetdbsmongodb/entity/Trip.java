@@ -34,10 +34,10 @@ public class Trip {
     private Location startLocation;
 
     @PastOrPresent(message = "Created date must be in the past or present")
-    private Instant created_at;
+    private Instant createdAt;
 
     @PastOrPresent(message = "Updated date must be in the past or present")
-    private Instant updated_at;
+    private Instant updatedAt;
 
     @NotNull(message = "Passenger is required")
     private User passenger;

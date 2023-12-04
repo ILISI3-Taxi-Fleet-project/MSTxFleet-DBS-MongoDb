@@ -30,7 +30,7 @@ public class TripService {
 
         Trip trip = Trip.builder().
                 id(UUID.fromString(tripId))
-                .created_at(createdAt)
+                .createdAt(createdAt)
                 .passenger(User.builder().id(UUID.fromString(passengerId)).build())
                 .destination(new Location(endLatitude, endLongitude))
                 .startLocation(new Location(startLatitude, startLongitude))
@@ -50,7 +50,7 @@ public class TripService {
 
         trip.setDriver(User.builder().id(UUID.fromString(driverId)).build());
         trip.setStatus(status);
-        trip.setUpdated_at(updatedAt);
+        trip.setUpdatedAt(updatedAt);
         tripRepository.save(trip);
     }
 
