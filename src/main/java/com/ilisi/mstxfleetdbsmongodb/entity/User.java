@@ -28,13 +28,11 @@ public class User {
     @NotBlank(message = "Username cannot be blank")
     @Size(min = 3, max = 255, message = "Username must be between 3 and 15 characters long")
     @Indexed(unique = true)
-    @JsonIgnore
     private String username;
 
     @NotBlank(message = "Password cannot be blank")
     // Here you can also add @Pattern for regex to enforce strong password policies
     @Size(min = 6, message = "Password must be at least 6 characters long")
-    @JsonIgnore
     private String password;
 
     @NotBlank(message = "User type cannot be blank")
