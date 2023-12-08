@@ -20,8 +20,8 @@ import java.util.Map;
 public class KafkaConsumer {
     private final TripService tripService;
 
-    @KafkaListener(topicPartitions = @TopicPartition(topic = "trip", partitions = {"0"}),
-            groupId="{spring.kafka.consumer.group-id}")
+    @KafkaListener(topics="trip",
+            groupId="${spring.kafka.consumer.group-id}")
     public void consume(ConsumerRecord<String, Map<String,Object>> record) {
         try {
             Map<String,Object> message = record.value();
